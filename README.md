@@ -29,3 +29,29 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
    select COUNT(*) FROM products;
    select COUNT(*) FROM orders;
    ```
+
+### Using Airbyte
+
+- Download Airbyte and run it locally
+  ```bash
+  docker-compose up
+  ```
+- Access the local Airbyte UI at `localhost:8080`
+- Create a source `northwind_store_pg` for the postgresql database `northwind_store`
+  - Host `host.docker.internal`
+  - Update method `Detect Changes with Xmin System Column`
+- Create a destination `northwind_store_dw_snowflake` for the Snowflake database `NORTHWIND_STORE_DW`
+- Create a connection between `northwind_store_pg` and `northwind_store_dw_snowflake`
+  - Namespace Custom Format: `raw`
+
+  ![images/airbyte_connections_schema.png](images/airbyte_connections_schema.png)
+  ![images/airbyte_connections_sync_completed.png](images/airbyte_connections_sync_completed.png)
+
+### Using Snowflake
+
+- Log in to Snowflake
+- Go to `worksheets` > `+ worksheet`
+- On the top right, select the role `ACCOUNTADMIN.XSMALL_WH`
+- On the top left of the worksheet, select `NORTHWIND_STORE_DW.RAW`
+- Query one of the synced tables from Airbyte e.g. `select * from customers`
+![images/snowflake_data_loaded.png](images/snowflake_data_loaded.png)
