@@ -59,3 +59,6 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 ## Using DBT
 
 - Based on the `raw` tables loaded into Snowflake via Airflow, configure DBT to materialize them into `staging` views
+- Dimensional modeling:
+  - `fact_orders`
+  - `dim_products`, `dim_customers`, `dim_employees`
