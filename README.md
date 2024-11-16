@@ -55,3 +55,7 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 - On the top left of the worksheet, select `NORTHWIND_STORE_DW.RAW`
 - Query one of the synced tables from Airbyte e.g. `select * from customers`
 ![images/snowflake_data_loaded.png](images/snowflake_data_loaded.png)
+
+## Using DBT
+
+- Based on the `raw` tables loaded into Snowflake via Airflow, configure DBT to materialize them into `staging` views
