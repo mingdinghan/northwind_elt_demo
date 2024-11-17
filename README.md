@@ -62,3 +62,4 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 - Dimensional modeling:
   - `fact_orders`
   - `dim_products`, `dim_customers`, `dim_employees`
+  - accumulating snapshot `orders_accumulating` shows how long it took to ship orders and whether they were late
