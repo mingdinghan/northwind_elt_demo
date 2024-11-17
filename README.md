@@ -1,13 +1,34 @@
 ## Northwind Store ELT Demo
 
 ### Introduction
-This is a demo project to create an ELT pipeline using Airbyte, DBT and Snowflake.
+This is a demo project to create an ELT pipeline using Airbyte, DBT, Snowflake and Preset.
 
 This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql) example dataset and demonstrates the following:
 - extract data and load into Snowflake as `raw` data tables using Airbyte
 - use dimensional modeling and dbt to build `mart` data tables
 - visualization using Preset
 
+### Business Objectives
+What users would find your dataset useful?
+- To enable business analysts to explore the data as a semantic model / OLAP cube, built from a one-big-table `mart`
+- To enable business leadership to gain insights from the data to understand business operations and where to improve
+- To enable other data engineers to build downstream data models and marts
+
+Datasets
+- [Northwind Store](https://github.com/pthom/northwind_psql)
+
+Business process modeling
+- We model the orders shipping process to determine revenue, profit and whether shipping was late or missing. Example questions:
+  - for the COO, provide a breakdown of how many orders were late, how many orders were not shipped, which were the customers impacted?
+  - for the CEO, provide an end of month sales report with orders figures aggregated for the end of each month. Provide the ability to slice by the product name.  
+  - what are the most profitable products?
+
+
+### System Architecture
+
+![images/system_architecture.png](images/system_architecture.png)
+
+---
 
 ### Loading data into local Postgres as source database
 
@@ -34,6 +55,8 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 
 - Download Airbyte and run it locally
   ```bash
+  git clone --depth=1 https://github.com/airbytehq/airbyte.git
+  cd airbyte
   docker-compose up
   ```
 - Access the local Airbyte UI at `localhost:8080`
@@ -58,13 +81,33 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 
 ## Using DBT
 
-- Based on the `raw` tables loaded into Snowflake via Airflow, configure DBT to materialize them into `staging` views
+- Based on the `raw` tables loaded into Snowflake via Airflow, configure DBT to materialize them into `staging` views.
+
 - Dimensional modeling:
   - `fact_orders`
   - `dim_products`, `dim_customers`, `dim_employees`
   - accumulating snapshot `orders_accumulating` shows how long it took to ship orders and whether they were late
   - periodic snapshot `orders_monthly` for orders grouped by `end_of_month` and support slicing by `product_key`
   - one-big-table `report_orders`
+
+  - To run dbt models, first navigate to the `transform/dw` folder
+    - To load source data in Snowflake `raw` tables into `staging` tables:
+      ```
+      dbt run -s models/staging
+      ```
+    - To load `staging` tables into `mart` tables:
+      ```
+      dbt run -s models/mart
+      ```
+    - To run tests:
+      ```
+      dbt test
+      ```
+
+  - Star schema ER diagram
+
+    ![images/star_schema_ER_diagram.png](images/star_schema_ER_diagram.png)
+
 
 ## Using Preset for Semantic Layer and Visualization
 
