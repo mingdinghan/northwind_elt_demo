@@ -65,3 +65,17 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
   - accumulating snapshot `orders_accumulating` shows how long it took to ship orders and whether they were late
   - periodic snapshot `orders_monthly` for orders grouped by `end_of_month` and support slicing by `product_key`
   - one-big-table `report_orders`
+
+## Using Preset for Semantic Layer and Visualization
+
+Create Preset dataset and connect to Snowflake database - `report_orders` mart
+
+![images/preset_dataset_db_connection.png](images/preset_dataset_db_connection.png)
+
+Create custom metrics in Preset dataset
+
+![images/preset_dataset_custom_metrics.png](images/preset_dataset_custom_metrics.png)
+
+Create charts and dashboard
+
+![images/preset_visualization_dashboard.png](images/preset_visualization_dashboard.png)
