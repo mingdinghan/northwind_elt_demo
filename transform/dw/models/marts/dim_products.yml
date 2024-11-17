@@ -32,5 +32,5 @@ models:
       - name: quantity_per_unit
         description: The product quantity per unit
 
-      - name: unit_price
+      - name: product_unit_price
         description: The product unit price

@@ -43,7 +43,7 @@ models:
       - name: freight_cost
         description: The shipping freight cost of the order
 
-      - name: unit_price
+      - name: order_detail_unit_price
         description: The unit price of the product in the order
         tests:
           - not_null

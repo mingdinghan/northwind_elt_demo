@@ -3,7 +3,7 @@ SELECT
     products.product_id,
     products.product_name,
     products.quantity_per_unit,
-    products.unit_price,
+    products.unit_price as product_unit_price,
     categories.category_name AS category_name,
     suppliers.company_name AS supplier_company_name
 FROM {{ ref('products') }} AS products

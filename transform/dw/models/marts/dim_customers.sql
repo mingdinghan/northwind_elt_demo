@@ -4,10 +4,10 @@ SELECT
     customers.company_name,
     customers.contact_name,
     customers.contact_title,
-    customers.city,
-    customers.region,
-    us_states.state_name AS us_state,
-    customers.country,
+    customers.city AS customer_city,
+    customers.region AS customer_region,
+    us_states.state_name AS customer_us_state,
+    customers.country AS customer_country,
 FROM {{ ref("customers") }} AS customers
 LEFT JOIN {{ ref("us_states") }} AS us_states
     ON customers.region = us_states.state_abbr

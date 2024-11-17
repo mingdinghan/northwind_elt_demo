@@ -5,10 +5,10 @@ SELECT
     employees.title,
     employees.birth_date,
     employees.hire_date,
-    employees.city,
-    employees.region,
-    us_states.state_name AS us_state,
-    employees.country,
+    employees.city AS employee_city,
+    employees.region AS employee_region,
+    us_states.state_name AS employee_us_state,
+    employees.country AS employee_country,
     territories.territory_description,
     region.region_description
 FROM {{ ref('employees') }} AS employees

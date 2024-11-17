@@ -41,7 +41,7 @@ SELECT
     orders.shipped_date,
     orders.shipper_name,
     orders.freight_cost,
-    order_details.unit_price,
+    order_details.unit_price as order_detail_unit_price,
     order_details.quantity,
     order_details.discount,
     order_details.unit_price * (1 - order_details.discount) * order_details.quantity AS revenue
