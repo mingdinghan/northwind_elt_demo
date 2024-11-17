@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_employees
+    columns:
+      - name: employee_key
+        description: The surrogate key of the employee. An employee can cover many terrorities
+        tests:
+          - not_null
+
+      - name: employee_id
+        description: The natural key of the employee
+        tests:
+          - not_null
+
+      - name: employee_name
+        description: The employee's full name
+        tests:
+          - not_null

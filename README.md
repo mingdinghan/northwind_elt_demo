@@ -55,3 +55,13 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
 - On the top left of the worksheet, select `NORTHWIND_STORE_DW.RAW`
 - Query one of the synced tables from Airbyte e.g. `select * from customers`
 ![images/snowflake_data_loaded.png](images/snowflake_data_loaded.png)
+
+## Using DBT
+
+- Based on the `raw` tables loaded into Snowflake via Airflow, configure DBT to materialize them into `staging` views
+- Dimensional modeling:
+  - `fact_orders`
+  - `dim_products`, `dim_customers`, `dim_employees`
+  - accumulating snapshot `orders_accumulating` shows how long it took to ship orders and whether they were late
+  - periodic snapshot `orders_monthly` for orders grouped by `end_of_month` and support slicing by `product_key`
+  - one-big-table `report_orders`

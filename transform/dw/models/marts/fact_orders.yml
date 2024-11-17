@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: |-
+      This table provides a dataset of all orders.
+
+      **Grain:** Each row represents one order item.
+    columns:
+
+      - name: order_key
+        description: The surrogate key of the order. An order can have many products
+        tests:
+          - not_null
+
+      - name: product_key
+        description: The surrogate key of the product
+        tests:
+          - not_null
+
+      - name: customer_key
+        description: The surrogate key of the customer
+        tests:
+          - not_null
+
+      - name: employee_key
+        description: The surrogate key of the employee
+        tests:
+          - not_null
+
+      - name: order_date
+        description: The order_date of the order
+
+      - name: shipped_date
+        description: The shipped_date of the order
+
+      - name: required_date
+        description: The date that the order should have been shipped to the customer
+
+      - name: shipper_name
+        description: The name of the company that shipped the order
+
+      - name: freight_cost
+        description: The shipping freight cost of the order
+
+      - name: order_detail_unit_price
+        description: The unit price of the product in the order
+        tests:
+          - not_null
+
+      - name: quantity
+        description: The quantity of the product in the order
+        tests:
+          - not_null
+
+      - name: discount
+        description: The discount of the product in the order
+
+      - name: revenue
+        description: The revenue of the order item, computed as unit_price * (1 - discount) * quantity
+        tests:
+          - not_null

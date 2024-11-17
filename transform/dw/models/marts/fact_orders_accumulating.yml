@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: fact_orders_accumulating
+    description: |-
+      This table provides a dataset of all orders, and how long it took to ship them.
+
+      It indicated whether an order was shipped, and whether it was late.
+
+      **Grain:** Each row represents one order.
+    columns:
+      - name: order_key
+        description: The surrogate key of the order
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_key
+        description: The surrogate key to dim_customer
+        tests:
+          - not_null
+
+      - name: days_shipped
+        description: The number of days between order_date and shipped_date, if the order was shipped
+
+      - name: days_late
+        description: The number of days (between shipped_date and required_date) if the order was late

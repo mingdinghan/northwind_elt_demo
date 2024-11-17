@@ -1,0 +1,16 @@
+dw:
+    target: dev
+    outputs:
+        dev:
+            type: snowflake
+            account: '{{ env_var("SNOWFLAKE_ACCOUNT") }}'
+
+            user: '{{ env_var("SNOWFLAKE_USERNAME") }}'
+            password: '{{ env_var("SNOWFLAKE_PASSWORD") }}'
+
+            role: accountadmin
+            database: '{{ env_var("SNOWFLAKE_DATABASE") }}'
+            warehouse: xsmall_wh
+            schema: raw
+            threads: 8
+            client_session_keep_alive: False

@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fact_orders_monthly
+    description: |-
+      This table provides a dataset of all orders grouped by month_end_date
+
+      It exposes the monthly revenue and the product_key for further breakdowns
+
+      **Grain:** Each row represents one combination of (month_end_date, product_key)
+    columns:
+      - name: orders_monthly_key
+        description: The surrogate key of the orders by month_end_date
+        tests:
+          - not_null
+          - unique
+
+      - name: month_end_date
+        description: The month_end_date of the orders
+        tests:
+          - not_null
+
+      - name: product_key
+        description: The foreign key of the product
+        tests:
+          - not_null
+
+      - name: revenue
+        description: The revenue for each combination of (month_end_date, product_key)
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"

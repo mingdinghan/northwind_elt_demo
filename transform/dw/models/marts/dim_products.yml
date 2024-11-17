@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: dim_products
+    columns:
+      - name: product_key
+        description: The surrogate key of the product
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: The natural key of the product
+        tests:
+          - not_null
+
+      - name: product_name
+        description: The product name
+        tests:
+          - not_null
+
+      - name: category_name
+        description: The product category name
+        tests:
+          - not_null
+
+      - name: supplier_company_name
+        description: The product supplier's company name
+        tests:
+          - not_null
+
+      - name: quantity_per_unit
+        description: The product quantity per unit
+
+      - name: product_unit_price
+        description: The product unit price
