@@ -63,3 +63,4 @@ This makes use of the [Northwind Store](https://github.com/pthom/northwind_psql)
   - `fact_orders`
   - `dim_products`, `dim_customers`, `dim_employees`
   - accumulating snapshot `orders_accumulating` shows how long it took to ship orders and whether they were late
+  - periodic snapshot `orders_monthly` for orders grouped by `end_of_month` and support slicing by `product_key`

@@ -55,3 +55,8 @@ models:
 
       - name: discount
         description: The discount of the product in the order
+
+      - name: revenue
+        description: The revenue of the order item, computed as unit_price * (1 - discount) * quantity
+        tests:
+          - not_null

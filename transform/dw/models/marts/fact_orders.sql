@@ -43,7 +43,8 @@ SELECT
     orders.freight_cost,
     order_details.unit_price,
     order_details.quantity,
-    order_details.discount
+    order_details.discount,
+    order_details.unit_price * (1 - order_details.discount) * order_details.quantity AS revenue
 FROM orders
 INNER JOIN order_details
     ON orders.order_id = order_details.order_id
