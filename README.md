@@ -108,6 +108,13 @@ Business process modeling
 
     ![images/star_schema_ER_diagram.png](images/star_schema_ER_diagram.png)
 
+  - Generate documentation and lineage
+    ```bash
+    dbt docs generate && dbt docs serve
+    ```
+
+    ![images/northwind_store_dbt_lineage.png](images/northwind_store_dbt_lineage.png)
+
 
 ## Using Preset for Semantic Layer and Visualization
 

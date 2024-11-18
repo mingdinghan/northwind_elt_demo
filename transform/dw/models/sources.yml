@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: northwind_store
-    database: northwind_store_dw
+    database: northwind_store_dw_aws
     schema: raw
     tables:
       - name: customer_customer_demo

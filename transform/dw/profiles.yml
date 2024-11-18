@@ -10,7 +10,7 @@ dw:
 
             role: accountadmin
             database: '{{ env_var("SNOWFLAKE_DATABASE") }}'
-            warehouse: xsmall_wh
+            warehouse: compute_wh
             schema: raw
             threads: 8
             client_session_keep_alive: False
